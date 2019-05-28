@@ -1,0 +1,13 @@
+{
+  "guide_active": "guide_1",
+  "guide_1":[
+    {"login": {"need_1": "<parameter>","need_2": "<parameter>"}},
+    {"mapa_1": null},
+    {"login_out": null}
+  ],
+   "guide_2":[
+    {"login": {"need_1": "","need_2": "*"}},
+    {"mapa_1": null},
+    {"login_out": null}
+  ]
+}

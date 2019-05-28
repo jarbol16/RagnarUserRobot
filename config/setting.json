@@ -1,0 +1,22 @@
+{
+  "web_url_init": "url",
+  "driver": {
+    "chrome": true,
+    "firefox": false,
+    "edge": false
+  },
+  "driver_url": {
+    "chrome": "drivers/Chrome/chromedriver.exe",
+    "firefox": "drivers/Firefox/geckodriver.exe",
+    "edge": "drivers/Edge/MicrosoftWebDriver.exe"
+  },
+  "email_error": "jarbol16@gmail.com",
+   "email":{
+        "port":587,
+        "smtp":"smtp.gmail.com",
+        "from":"",
+        "pass":""
+    },
+  "threads_active": false,
+  "threads_num": 3
+}

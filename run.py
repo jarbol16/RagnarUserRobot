@@ -4,10 +4,19 @@ import os
 from core import ragnar as ra
 import asyncio
 from multiprocessing import Process
+import time
 
 def eye(data):
     try:
-        ra.__init(config=data)
+        if "periodic_iteration" in data:
+            if data["periodic_iteration"]["active"]:
+                if data["periodic_iteration"]["minutes_sleep"] > 0:
+                    dr =None
+                    while True:
+                        dr = ra.__init(config=data,dr=dr)
+                        time.sleep(int(data["periodic_iteration"]["minutes_sleep"]))
+        else:
+            ra.__init(config=data)
     except Exception as ex:
         print("Error in main {0}".format(ex))
 

@@ -20,6 +20,7 @@ class Email():
         if len(r) > 0:
             self.path = r
         file = open("{0}/config/setting.json".format(self.path))
+        print("Constuyendo correo")
         # print (os.path.dirname("{0}/setting.json".format(self.path)))
         # with open('setting.json') as json_data_file:
         data = json.load(file)
@@ -30,6 +31,7 @@ class Email():
         self.pass_email = _["pass"]
 
     def send_email(self, to=None, file_name=None, body=None, subject=None):
+        print("Correo preprando", file_name)
         msg = MIMEMultipart()
         msg['From'] = self.from_email
         msg['To'] = to

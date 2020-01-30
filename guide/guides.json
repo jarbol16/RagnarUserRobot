@@ -1,13 +1,20 @@
 {
-  "guide_active": "guide_1",
+  "guide_active": "guide_3",
+  "file_steps": "steps_epm",
   "guide_1":[
-    {"login": {"need_1": "<parameter>","need_2": "<parameter>"}},
+    {"login": {"need_1": "eservice","need_2": "eservice"}},
     {"mapa_1": null},
     {"login_out": null}
   ],
    "guide_2":[
-    {"login": {"need_1": "","need_2": "*"}},
+    {"login": {"need_1": "jarboleda","need_2": "juan123*"}},
     {"mapa_1": null},
     {"login_out": null}
+  ],
+  "guide_3": [
+    {"factura_web":  null},
+    {"buscar_contrato": {"need_1": "9123"}},
+    {"factura_web":  null},
+    {"iniciar_session": {"need_1": "marcela.ocampo9@gmail.com", "need_2": "LOMDICI*2019."}}
   ]
 }

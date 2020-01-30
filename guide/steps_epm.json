@@ -1,0 +1,32 @@
+{
+ "factura_web": {
+    "url": "Inicio.aspx"
+  },
+  "buscar_contrato": {
+    "need_1": "ctl00_cphPrincipal_textFiltro",
+    "acction_1": {
+      "id": "ctl00_cphPrincipal_consultaPagoLink",
+      "event": "click",
+      "time": 10,
+      "id_flag": "ctl00_cphPrincipal_gveFacturas",
+      "activate_wait": true
+    }
+  },
+  "iniciar_session": {
+    "url": "InicioSesion.aspx",
+    "need_1": "ctl00_cphPrincipal_txtCorreo",
+    "need_2": "ctl00_cphPrincipal_txtClave",
+    "acction_1": {
+      "id": "ctl00_cphPrincipal_btnIngresar",
+      "event": "click",
+      "time": 5
+    }
+  },
+  "cerrar_sesion": {
+    "acction_1": {
+      "id": "ctl00_cerrarLink",
+      "event": "click",
+      "time": 2
+    }
+  }
+}

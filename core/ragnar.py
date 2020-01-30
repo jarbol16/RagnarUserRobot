@@ -18,7 +18,7 @@ global __email
 #__driver = webdriver.Chrome()
 
 
-def __init(config = None):
+def __init(config = None, dr=None):
     """
     Inicio de robot ragnar
     :param config:
@@ -30,17 +30,19 @@ def __init(config = None):
     __email = Email()
     print("Ragnar comenzando a trabajar \n{0}".format(config))
     __setting = config
-    if config["driver"]["chrome"]:
-        __driver = webdriver.Chrome(executable_path="{0}/{1}".format(config["_path"],config["driver_url"]["chrome"]))
-    elif config["driver"]["edge"]:
-        __driver = webdriver.Edge(executable_path="{0}/{1}".format(config["_path"], config["driver_url"]["edge"]))
-    elif config["driver"]["firefox"]:
-        __driver = webdriver.Firefox(executable_path="{0}/{1}".format(config["_path"], config["driver_url"]["firefox"]))
-    else:
-        pass
+    if dr is None:
+        if config["driver"]["chrome"]:
+            __driver = webdriver.Chrome(executable_path="{0}/{1}".format(config["_path"],config["driver_url"]["chrome"]))
+        elif config["driver"]["edge"]:
+            __driver = webdriver.Edge(executable_path="{0}/{1}".format(config["_path"], config["driver_url"]["edge"]))
+        elif config["driver"]["firefox"]:
+            __driver = webdriver.Firefox(executable_path="{0}/{1}".format(config["_path"], config["driver_url"]["firefox"]))
+        else:
+            pass
 
     ejecute_steps(config=config)
     print("{0} - TERMINO".format(os.getpid()))
+    return __driver
 
 __guide = {}
 __steps = {}
@@ -50,7 +52,7 @@ def ejecute_steps(config=None):
     global __driver
     #__driver = webdriver.Chrome()
     __guide = json.load(open("{0}/guide/guides.json".format(config["_path"]), "r"))
-    __steps = json.load(open("{0}/guide/steps.json".format(config["_path"]), "r"))
+    __steps = json.load(open("{0}/guide/{1}.json".format(config["_path"],__guide["file_steps"]), "r"))
     print("Guia Activa: {0}".format(__guide[__guide["guide_active"]]))
     _step_cont = 1
     for step in __guide[__guide["guide_active"]]:
@@ -92,12 +94,19 @@ def event_in_elem(elm,evt, sec=1,img="",action={}):
         if "activate_wait" in action and action["activate_wait"]:
             encontro = wait(sec=sec,id=action["id_flag"])
             print("Encontro", encontro)
+            if encontro is False:
+                print("Alsitando envio de correo")
+                __email = Email()
+                __email.send_email(to=__setting["email_error"], file_name="{0}_{1}.png".format(img, os.getpid()),
+                                   body="Error", subject="Error en pagina")
+                print("Email de error enviado")
         else:
             time.sleep(sec)
             print("Debe borrar {0}_{1}".format(img,os.getpid()))
             fc.remove_file(file_anme="{0}_{1}".format(img,os.getpid()),_path= __setting["_path"])
             fc.remove_file(file_anme="ANS_{0}_{1}".format(img,os.getpid()), _path=__setting["_path"])
     else:
+        print("Alsitando envio de correo")
         __email = Email()
         __email.send_email(to=__setting["email_error"],file_name="{0}_{1}.png".format(img,os.getpid()),body="Error",subject="Error en pagina")
         print("Email de error enviado")
@@ -125,6 +134,7 @@ def wait(sec=0,id=""):
             except  Exception as ex:
                 print("Er",ex)
             intent +=1
+        return False
     except Exception as ex:
         print("Error en Wait", ex)
     return False

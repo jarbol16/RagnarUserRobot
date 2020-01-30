@@ -1,8 +1,8 @@
 {
-  "web_url_init": "url",
+  "web_url_init": "https://www13.epm.com.co/FacturaWeb/Paginas/",
   "driver": {
-    "chrome": true,
-    "firefox": false,
+    "chrome": false,
+    "firefox": true,
     "edge": false
   },
   "driver_url": {
@@ -14,9 +14,14 @@
    "email":{
         "port":587,
         "smtp":"smtp.gmail.com",
-        "from":"",
-        "pass":""
+        "from":"monitoriasprog@gmail.com",
+        "pass":"juan123*"
     },
   "threads_active": false,
-  "threads_num": 3
+  "threads_num": 3,
+  "periodic_iteration": {
+    "active": true,
+    "num_iter": 0,
+    "minutes_sleep": 70
+  }
 }

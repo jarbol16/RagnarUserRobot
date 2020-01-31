@@ -10,18 +10,18 @@
     "firefox": "drivers/Firefox/geckodriver.exe",
     "edge": "drivers/Edge/MicrosoftWebDriver.exe"
   },
-  "email_error": "jarbol16@gmail.com",
-   "email":{
-        "port":587,
-        "smtp":"smtp.gmail.com",
-        "from":"monitoriasprog@gmail.com",
-        "pass":"juan123*"
-    },
   "threads_active": false,
   "threads_num": 3,
   "periodic_iteration": {
     "active": true,
     "num_iter": 0,
     "minutes_sleep": 70
-  }
+  },
+  "email_error": "jarbol16@gmail.com",
+   "email":{
+        "port":587,
+        "smtp":"smtp.gmail.com",
+        "from":"monitoriasprog@gmail.com",
+        "pass":"juan123*"
+    }
 }

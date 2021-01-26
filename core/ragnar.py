@@ -18,7 +18,7 @@ global __email
 #__driver = webdriver.Chrome()
 
 
-def __init(config = None, dr=None):
+def __init(config = None, dr=None, guide=None, steps = None):
     """
     Inicio de robot ragnar
     :param config:
@@ -40,7 +40,7 @@ def __init(config = None, dr=None):
         else:
             pass
 
-    ejecute_steps(config=config)
+    ejecute_steps(config=config,guide=guide, steps=steps)
     print("{0} - TERMINO".format(os.getpid()))
     return __driver
 
@@ -48,14 +48,20 @@ __guide = {}
 __steps = {}
 
 
-def ejecute_steps(config=None):
+def ejecute_steps(config=None, guide=None, steps=None):
     global __driver
     #__driver = webdriver.Chrome()
-    __guide = json.load(open("{0}/guide/guides.json".format(config["_path"]), "r"))
-    __steps = json.load(open("{0}/guide/{1}.json".format(config["_path"],__guide["file_steps"]), "r"))
-    print("Guia Activa: {0}".format(__guide[__guide["guide_active"]]))
+    __guide = guide#json.load(open("{0}/guide/guides.json".format(config["_path"]), "r"))
+    __steps = steps#json.load(open("{0}/guide/{1}.json".format(config["_path"],__guide["file_steps"]), "r"))
+    guide_name = ""
+    if "guide_dynamic_active" in config:
+        guide_name = config["guide_dynamic_active"]
+        print("Guia Dinamica Activa: {0}".format(guide_name))
+    else:
+        guide_name = __guide["guide_active"]
+        print("Guia Activa: {0}".format(guide_name))
     _step_cont = 1
-    for step in __guide[__guide["guide_active"]]:
+    for step in __guide[guide_name]:
         try:
             print("{2} - Ejecutando paso {0}: step : {1}".format(_step_cont, step, os.getpid()))
             _step_cont +=1
@@ -73,7 +79,11 @@ def ejecute_steps(config=None):
                     for ac in acctions:
                         print("{3} - Procesando accion {0}_{1}_{2}".format(__guide["guide_active"],_step_key,_step[ac]["id"],os.getpid()))
                         screenshot("{0}_{1}_{2}".format(__guide["guide_active"],_step_key,_step[ac]["id"]))
-                        elem = __driver.find_element_by_id(_step[ac]["id"])
+                        elem = None
+                        if "xpath" in _step[ac] and _step[ac]["id"] == "":
+                            elem = __driver.find_element_by_xpath(_step[ac]["xpath"])
+                        else:
+                            elem = __driver.find_element_by_id(_step[ac]["id"])
                         if elem:
                             img_anem = "{0}_{1}_{2}".format(__guide["guide_active"], _step_key, _step[ac]["id"])
                             event_in_elem(elem,_step[ac]["event"],sec=_step[ac]["time"],img=img_anem,action=_step[ac])
@@ -82,7 +92,7 @@ def ejecute_steps(config=None):
 
 
 
-def event_in_elem(elm,evt, sec=1,img="",action={}):
+def event_in_elem(elm, evt, sec=1, img="", action={}):
     global __setting
     global __email
     global __driver
@@ -103,8 +113,10 @@ def event_in_elem(elm,evt, sec=1,img="",action={}):
         else:
             time.sleep(sec)
             print("Debe borrar {0}_{1}".format(img,os.getpid()))
-            fc.remove_file(file_anme="{0}_{1}".format(img,os.getpid()),_path= __setting["_path"])
-            fc.remove_file(file_anme="ANS_{0}_{1}".format(img,os.getpid()), _path=__setting["_path"])
+            if "capture_image" in __setting and __setting["capture_image"]:
+                fc.remove_file(file_anme="{0}_{1}".format(img,os.getpid()),_path= __setting["_path"])
+                fc.remove_file(file_anme="ANS_{0}_{1}".format(img,os.getpid()), _path=__setting["_path"])
+
     else:
         print("Alsitando envio de correo")
         __email = Email()
@@ -114,7 +126,10 @@ def event_in_elem(elm,evt, sec=1,img="",action={}):
 def screenshot(step_name):
     global __setting
     global __driver
-    __driver.get_screenshot_as_file("{0}/out/{1}_{2}.png".format(__setting["_path"],step_name,os.getpid()))
+    if "capture_image" in __setting and __setting["capture_image"]:
+        __driver.get_screenshot_as_file("{0}/out/{1}_{2}.png".format(__setting["_path"],step_name,os.getpid()))
+    else:
+        pass
 
 
 def wait(sec=0,id=""):

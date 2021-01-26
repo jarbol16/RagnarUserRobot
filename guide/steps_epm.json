@@ -1,5 +1,5 @@
 {
- "factura_web": {
+  "factura_web": {
     "url": "Inicio.aspx"
   },
   "buscar_contrato": {
@@ -14,8 +14,8 @@
   },
   "iniciar_session": {
     "url": "InicioSesion.aspx",
-    "need_1": "ctl00_cphPrincipal_txtCorreo",
-    "need_2": "ctl00_cphPrincipal_txtClave",
+    "need_1": "ctl00_cphPrincipal_txtCo",
+    "need_2": "ctl00_cphPrincipal_txtCl",
     "acction_1": {
       "id": "ctl00_cphPrincipal_btnIngresar",
       "event": "click",

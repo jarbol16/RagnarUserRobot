@@ -1,11 +1,53 @@
 {
-  "guide_active": "guide_3",
-  "file_steps": "steps_epm",
+  "guide_active": "guide_1",
+  "file_steps": "pasos_ejemplos",
+  "guide_1": [
+    {
+      "Ingreso_Sitio": null
+    }
+  ],
+  "guide_2": [
+    {
+      "iniciar_session": {
+        "need_1": "",
+        "need_2": ""
+      }
+    }
+  ],
   "guide_3": [
-    {"factura_web":  null},
-    {"buscar_contrato": {"need_1": "9123"}},
-    {"factura_web":  null},
-    {"iniciar_session": {"need_1": "marcela.ocampo9@gmail.com", "need_2": "LOMDICI*2019."}},
-    {"cerrar_sesion":null}
+    {
+      "factura_web": null
+    },
+    {
+      "buscar_contrato": {
+        "need_1": "123"
+      }
+    },
+    {
+      "factura_web": null
+    },
+    {
+      "iniciar_session": {
+        "need_1": "",
+        "need_2": ""
+      }
+    },
+    {
+      "cerrar_sesion": null
+    }
+  ],
+  "guide_chat_1": [
+    {
+      "Ingreso_Sitio": null
+    }
+  ],
+  "guide_chat_2": [
+    {
+      "Ingreso_Sitio2": null
+    }
+  ],
+  "guide_group": [
+    "guide_chat_1",
+    "guide_chat_2"
   ]
 }

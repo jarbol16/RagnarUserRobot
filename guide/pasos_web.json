@@ -1,0 +1,35 @@
+{
+  "Ingreso_Sitio": {
+    "url": "alice_kosmos",
+    "acction_1": {
+      "id": "close_entrance_terms",
+      "event": "click",
+      "time": 1
+    }
+  },
+  "iniciar_session": {
+    "url": "auth/login/",
+    "need_1": "id_username",
+    "need_2": "id_password",
+    "acction_1": {
+      "id": "",
+      "event": "click",
+      "time": 4,
+      "xpath": "//input[@value='log in'][@type='submit']"
+    },
+    "acction_2": {
+      "id": "close_entrance_terms",
+      "event": "click",
+      "time": "1",
+      "xpath": ""
+    }
+  },
+  "ingresar_a_sala": {
+    "url": "",
+    "acction_1": {
+      "id": "close_entrance_terms",
+      "event": "click",
+      "time": 1
+    }
+  }
+}

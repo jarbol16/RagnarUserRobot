@@ -1,0 +1,44 @@
+{
+  "login": {
+    "url": "login.aspx?redirect=no",
+    "need_1": "TxtUser",
+    "need_2": "TxtPassword",
+    "acction_1": {
+      "id": "ButIngresar",
+      "event": "click",
+      "time": 10
+    }
+  },
+  "login_out": {
+    "acction_1": {
+      "id": "blk-closeSession",
+      "event": "click",
+      "time": 1
+    }
+  },
+  "mapa_1": {
+    "acction_1": {
+      "id": "",
+      "event": "click",
+      "time": 10,
+      "activate_wait": true,
+      "id_flag": "divMapa",
+      "xpath": "//input[@value='log in'][@type='submit']"
+    }
+  },
+  "select_account": {
+    "event": "select",
+    "need_1": ""
+  },
+  "select_fleet": {},
+  "__ignore": "Pasos de koherencia",
+  "login_ko": {
+    "need_1": "TxtUser",
+    "need_2": "TxtPassword",
+    "acction_1": {
+      "id": "ButIngresar",
+      "event": "click",
+      "time": 10
+    }
+  }
+}

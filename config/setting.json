@@ -1,0 +1,33 @@
+{
+  "web_url_init": "https://...",
+  "driver": {
+    "chrome": true,
+    "firefox": false,
+    "edge": false
+  },
+  "driver_url": {
+    "chrome": "drivers/Firefox/geckodriver.exe",
+    "firefox": "drivers/Firefox/geckodriver.exe",
+    "edge": "drivers/Edge/MicrosoftWebDriver.exe"
+  },
+  "threads_active": false,
+  "threads_num": 4,
+  "threads": {
+    "range_time_init": 10,
+    "guide_dynamic": false,
+    "guide_group_key": "guide_group"
+  },
+  "periodic_iteration": {
+    "active": false,
+    "num_iter": 1,
+    "minutes_sleep": 60
+  },
+  "capture_image": false,
+  "email_error": "@gmail.com",
+  "email": {
+    "port": 587,
+    "smtp": "smtp.gmail.com",
+    "from": "",
+    "pass": ""
+  }
+}
